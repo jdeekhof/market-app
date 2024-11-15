@@ -270,6 +270,9 @@ GEM
       rubocop-rails
     ruby-progressbar (1.13.0)
     securerandom (0.3.2)
+    slim (5.1.1)
+      temple (~> 0.10.0)
+      tilt (>= 2.1.0)
     solid_cable (3.0.2)
       actioncable (>= 7.2)
       activejob (>= 7.2)
@@ -295,10 +298,18 @@ GEM
     stimulus-rails (1.3.4)
       railties (>= 6.0.0)
     stringio (3.1.2)
+    tailwindcss-rails (3.0.0)
+      railties (>= 7.0.0)
+      tailwindcss-ruby
+    tailwindcss-ruby (3.4.14-aarch64-linux)
+    tailwindcss-ruby (3.4.14-arm64-darwin)
+    tailwindcss-ruby (3.4.14-x86_64-linux)
+    temple (0.10.3)
     thor (1.3.2)
     thruster (0.1.9-aarch64-linux)
     thruster (0.1.9-arm64-darwin)
     thruster (0.1.9-x86_64-linux)
+    tilt (2.3.0)
     timeout (0.4.2)
     turbo-rails (2.0.11)
       actionpack (>= 6.0.0)
@@ -337,10 +348,12 @@ DEPENDENCIES
   rspec-rails
   rubocop
   rubocop-rails-omakase
+  slim
   solid_cable
   solid_cache
   solid_queue
   stimulus-rails
+  tailwindcss-rails (~> 3.0)
   thruster
   turbo-rails
   tzinfo-data
