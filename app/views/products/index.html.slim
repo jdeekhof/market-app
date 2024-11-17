@@ -1,0 +1,7 @@
+div.container.flex
+  div.container.rounded.m-3.p-5.bg-white
+    h1.font-bold Here's a list of all products
+    hr
+    div.flex.flex-col
+      -@products.each do |product|
+        p = product.attributes
