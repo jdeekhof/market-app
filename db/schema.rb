@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_18_013145) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_18_181911) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -60,7 +60,10 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_18_013145) do
     t.integer "discount_type", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "promotionable_type", null: false
+    t.bigint "promotionable_id", null: false
     t.index ["code"], name: "index_promotions_on_code", unique: true
+    t.index ["promotionable_type", "promotionable_id"], name: "index_promotions_on_promotionable"
   end
 
   add_foreign_key "cart_items", "carts"
