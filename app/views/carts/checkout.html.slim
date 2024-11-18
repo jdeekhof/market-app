@@ -1,0 +1,31 @@
+title Checkout
+.container.flex.flex-col
+  turbo-frame id="cart_items"
+    .container.flex.flex-col
+      .container.rounded.mx-2.p-5.bg-white.flex.flex-col
+        h1.font-bold Your Shopping Cart
+        hr
+        .container.mt-3.flex.flex-col
+          table.border.table-auto.rounded-lg
+            thead
+              tr.bg-slate-400
+                th.border Item
+                th.border Quantity
+                th.border Unit Price
+                th.border Subtotal
+                th.border Discount
+                th.border Total
+            tbody
+              - @cart_items.each do |item|
+                turbo-frame id="cart_item_#{item.id}"
+                  tr
+                    td.border = item.product.name
+                    td.border = item.human_units_of_sale
+                    td.border = number_to_currency(item.product.cents_price_per_unit/100.00)
+                    td.border = number_to_currency(item.quantity * item.product.cents_price_per_unit/100.00)
+                    td.border = item.promotion&.code
+                    td.border =  number_to_currency(@checkout.item_total(item:)/100.00)
+          .container.mt-3
+            h1.font-bold Total Price:
+            hr
+            h3 =  number_to_currency(@checkout.full_total / 100.00)

@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :products, only: [ :index, :new, :create ]
   resources :promotions, only: [ :index, :new, :create ]
   resources :carts, only: [ :new, :create, :show ] do
-    resources :cart_items, only: [ :create, :destroy ]
+    resources :cart_items, only: [ :create, :update, :destroy ]
+    get :checkout, on: :member
   end
 end
