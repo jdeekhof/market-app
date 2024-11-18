@@ -1,0 +1,45 @@
+div.container.flex
+  div.container.rounded.m-3.p-5.bg-white
+    h1.font-bold Fill out the form below to create a new Promotion
+    hr
+    div.container
+      = form_with model: @promotion, local: true, class: "space-y-6" do |f|
+        .space-y-4
+          .flex.flex-col.form-group
+            = f.label :code, class: "text-sm font-medium text-gray-700"
+            = f.text_field :code, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+
+          .flex.flex-col.form-group
+            = f.label :begins_at, class: "text-sm font-medium text-gray-700"
+            = f.datetime_field :begins_at
+
+          .flex.flex-col.form-group
+            = f.label :ends_at, class: "text-sm font-medium text-gray-700"
+            = f.datetime_field :ends_at
+
+          .flex.flex-col.form-group
+            = f.label :units_of_discount, class: "text-sm font-medium text-gray-700"
+            = f.select :units_of_discount, Promotion.units_of_discounts, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+
+          .flex.flex-col.form-group
+            = f.label :minimum_quantity, class: "text-sm font-medium text-gray-700"
+            = f.number_field :minimum_quantity, placeholder: 1, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500", min: 1, step: 1
+
+          .flex.flex-col
+            = f.label :discount, class: "text-sm font-medium text-gray-700"
+            .flex.space-x-2
+              .flex.flex-row data-controller="showhide" data-showhide-show-if-value="0"
+                div.basis-1/4
+                  = f.select :discount_type, [['$', 0],['%', 1]], {allow_blank: false}, {data: {showhide_target: "input", action: "change->showhide#toggle"},class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"}
+                div.basis-1/4
+                  span.relative.inset-y-0.left-0.flex.items-center.pl-3.text-gray-500
+                    = f.number_field :discount_scalar, class: "block w-full pl-8 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500", placeholder: "0", min: 0, step: 1
+                    span.absolute.inset-y-0.left-0.flex.items-center.pl-3.text-gray-500
+                      | .
+                    div data-showhide-target="output"
+                      = f.number_field :discount_scalar_cents, class: "block w-full py-6 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500", placeholder: "00", min: 0, max: 99, step: 1, title: "Enter cents only"
+
+
+        .flex.flex-col.mt-6
+          = f.submit 'Create Promotion',\
+                  class: "inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"

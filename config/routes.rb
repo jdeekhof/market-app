@@ -12,5 +12,8 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "welcome#index"
   resources :products, only: [ :index, :new, :create ]
-  resources :categories, only: [:create]
+  resources :promotions, only: [ :index, :new, :create ]
+  resources :carts, only: [:new, :create, :show] do
+    post :add_product, on: :member
+  end
 end
