@@ -25,19 +25,11 @@
 
   <body class="bg-slate-400 container m-3">
     <main class="flex">
-      <nav class="flex flex-col md:flex-row">
-          <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none dark:focus:ring-blue-800">
-            <%= link_to "Home", root_path %>
-          </button>
-          <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none dark:focus:ring-blue-800">
-            <%= link_to "New Product", new_product_path %>
-          </button>
-          <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none dark:focus:ring-blue-800">
-            <%= link_to "New Promotion", new_promotion_path %>
-          </button>
-          <button class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none dark:focus:ring-blue-800">
-            <%= link_to "Shop", new_cart_path %>
-          </button>
+      <nav class="flex flex-col">
+        <%= button_to "Home", root_path, method: :get, data: { turbo_frame: '_top' }, class: "w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none" %>
+        <%= button_to "New Product", new_product_path, method: :get, data: { turbo_frame: '_top' }, class: "w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none" %>
+        <%= button_to "New Promotion", new_promotion_path, method: :get, data: { turbo_frame: '_top' }, class: "w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none" %>
+        <%= button_to "Shop", new_cart_path, method: :get, data: { turbo_frame: '_top' }, class: "w-full text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none" %>
       </nav>
       <%= yield %>
     </main>
