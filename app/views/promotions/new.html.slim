@@ -10,6 +10,10 @@ div.container.flex
             = f.text_field :code, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
 
           .flex.flex-col.form-group
+            = f.label :promotional_category_or_product, class: "text-sm font-medium text-gray-700"
+            = f.select :promotionable, (Category.all + Product.all).map{ |item| ["#{item.name} #{item.class.name}", "#{item.class.name}##{item.id}"] }, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+
+          .flex.flex-col.form-group
             = f.label :begins_at, class: "text-sm font-medium text-gray-700"
             = f.datetime_field :begins_at
 
