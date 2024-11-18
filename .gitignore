@@ -35,4 +35,4 @@
 
 /app/assets/builds/*
 !/app/assets/builds/.keep
-.idea/workspace.xml
+.idea/*
