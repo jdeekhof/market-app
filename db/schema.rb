@@ -10,9 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_17_214229) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_18_013145) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "cart_items", force: :cascade do |t|
+    t.bigint "cart_id", null: false
+    t.bigint "product_id", null: false
+    t.bigint "promotion_id"
+    t.integer "quantity", default: 1, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cart_id"], name: "index_cart_items_on_cart_id"
+    t.index ["product_id"], name: "index_cart_items_on_product_id"
+    t.index ["promotion_id"], name: "index_cart_items_on_promotion_id"
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string "name", null: false
@@ -39,10 +56,14 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_17_214229) do
     t.datetime "ends_at"
     t.integer "minimum_quantity", default: 1, null: false
     t.integer "units_of_discount", null: false
-    t.integer "discount_scalar", null: false
+    t.integer "cents_discount_scalar", null: false
     t.integer "discount_type", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["code"], name: "index_promotions_on_code", unique: true
   end
+
+  add_foreign_key "cart_items", "carts"
+  add_foreign_key "cart_items", "products"
+  add_foreign_key "cart_items", "promotions"
 end
