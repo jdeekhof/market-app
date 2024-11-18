@@ -3,4 +3,5 @@ class CartItem < ApplicationRecord
   validates :quantity, numericality: { more_than: 0 }
   belongs_to :cart
   belongs_to :product
+  belongs_to :promotion, required: false
 end
