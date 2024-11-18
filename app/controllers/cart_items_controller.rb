@@ -6,6 +6,14 @@ class CartItemsController < ApplicationController
     redirect_to cart_path(@cart)
   end
 
+  def update
+    @cart = Cart.find(cart_params[:cart_id])
+    promotion = Promotion.find(promotion_params[:promotion_id])
+    cart_items = @cart.cart_items.undiscounted
+    promotion.promotionable.add_promotion(promotion:, cart_items:)
+    redirect_to cart_path(@cart)
+  end
+
   def destroy
     @cart = Cart.find(cart_params[:cart_id])
     @product = Product.find(product_params[:id])
@@ -21,5 +29,9 @@ class CartItemsController < ApplicationController
 
   def product_params
     params.permit :id, :quantity
+  end
+
+  def promotion_params
+    params.permit :promotion_id
   end
 end
