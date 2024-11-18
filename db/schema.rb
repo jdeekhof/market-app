@@ -18,7 +18,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_18_013145) do
     t.bigint "cart_id", null: false
     t.bigint "product_id", null: false
     t.bigint "promotion_id"
-    t.integer "quantity", default: 1, null: false
+    t.integer "quantity", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["cart_id"], name: "index_cart_items_on_cart_id"
