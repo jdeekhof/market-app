@@ -23,7 +23,15 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="bg-slate-400 container m-3">
+  <body class="bg-slate-400">
+      <div class="flash-container">
+        <% flash.each do |key, message| %>
+          <div class="alert text-white w-full">
+            <span><%= message %></span>
+            <button class="close" onclick="this.parentElement.style.display='none';">&times;</button>
+          </div>
+        <% end %>
+      </div>
     <main class="flex">
       <nav class="flex flex-col">
         <%= button_to "Home", root_path, method: :get, data: { turbo_frame: '_top' }, class: "w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none" %>

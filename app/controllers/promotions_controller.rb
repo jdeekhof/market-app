@@ -18,7 +18,7 @@ class PromotionsController < ApplicationController
       scalar = create_params[:discount_scalar]
     end
     promotionable = find_promotionable_from_params(create_params[:promotionable])
-    Promotion.create!(
+    promotion = Promotion.create(
       code: create_params[:code],
       promotionable:,
       begins_at: create_params[:begins_at],
@@ -27,7 +27,13 @@ class PromotionsController < ApplicationController
       discount_type:,
       cents_discount_scalar: scalar,
     )
-    redirect_to promotions_path
+    if promotion.save
+      flash.notice = "Promotion Saved!"
+      redirect_to promotions_path
+    else
+      flash.alert = promotion.errors
+      redirect_to new_promotion_path
+    end
   end
 
   private

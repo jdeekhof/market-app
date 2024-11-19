@@ -17,14 +17,20 @@ class ProductsController < ApplicationController
       dollars: create_params[:dollars],
       cents: create_params[:cents]
     )
-    @product = Product.create!(
+    product = Product.create(
       name: create_params[:name],
       brand: create_params[:brand],
       category_id:,
       cents_price_per_unit:,
       units_of_sale: create_params[:units_of_sale],
     )
-    redirect_to products_path
+    if product.save
+      flash.notice = "Product Saved!"
+      redirect_to products_path
+    else
+      flash.alert = product.errors
+      redirect_to new_product_path
+    end
   end
 
   private
