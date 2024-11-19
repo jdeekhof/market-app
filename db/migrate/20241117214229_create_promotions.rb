@@ -6,7 +6,7 @@ class CreatePromotions < ActiveRecord::Migration[8.0]
       t.datetime :ends_at
       t.integer :minimum_quantity, null: false, default: 1
       t.integer :units_of_discount, null: false
-      t.integer :discount_scalar, null: false
+      t.integer :cents_discount_scalar, null: false
       t.integer :discount_type, null: false
       t.timestamps
     end
