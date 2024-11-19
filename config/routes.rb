@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   root "welcome#index"
   resources :products, only: [ :index, :new, :create ]
   resources :promotions, only: [ :index, :new, :create ]
-  resources :carts, only: [ :new, :create, :show ] do
+  resources :carts, only: [ :new, :create, :show, :index ] do
     resources :cart_items, only: [ :create, :update, :destroy ]
     get :checkout, on: :member
   end

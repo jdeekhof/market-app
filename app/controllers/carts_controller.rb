@@ -15,6 +15,10 @@ class CartsController < ApplicationController
     @applicable_promotions = @cart.find_applicable_promotions
   end
 
+  def index
+    @carts = Cart.all
+  end
+
   private
 
   def cart_params
