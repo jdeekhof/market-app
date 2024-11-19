@@ -9,9 +9,9 @@ class Cart < ApplicationRecord
   def find_applicable_promotions
     products_in_cart = Product.where(id: cart_items.undiscounted.pluck(:product_id))
     applicable_promotions = Promotion.occurring_now.product_or_category_related(products: products_in_cart).uniq
-    applicable_promotions.filter! do |promotion|
-      promotion.promotionable.full_quantity_in_cart >= promotion.minimum_quantity
-    end
+    applicable_promotions.select do |promotion|
+      promotion.promotionable.full_quantity_in_cart(cart_items: self.cart_items) >= promotion.minimum_quantity
+    end || []
   end
 
   def add_product(product_id:, quantity:)

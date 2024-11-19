@@ -12,12 +12,7 @@ class CartsController < ApplicationController
   def show
     @cart = Cart.find(cart_params[:id])
     @cart_items = @cart.cart_items.ordered_by_category
-    products_in_cart = Product.where(id: @cart_items.where(promotion_id: nil).pluck(:product_id))
-    @applicable_promotions =
-      Promotion.occurring_now.product_or_category_related(products: products_in_cart).uniq
-    @applicable_promotions.filter! do |promotion|
-      @cart_items.find_by!(product_id: promotion.promotionable.id).quantity >= promotion.minimum_quantity
-    end
+    @applicable_promotions = @cart.find_applicable_promotions
   end
 
   private
