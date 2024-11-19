@@ -52,7 +52,7 @@ class PromotionsController < ApplicationController
   end
 
   def find_promotionable_from_params(promotionable_params)
-    parsed = promotionable_params.split('#') # [promotionable.class.name, promotionable.id ]
+    parsed = promotionable_params.split("#") # [promotionable.class.name, promotionable.id ]
     parsed.first.constantize.find(parsed.last)
   end
 end

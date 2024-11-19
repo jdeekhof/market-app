@@ -8,7 +8,7 @@ class ProductsController < ApplicationController
   end
 
   def create
-    if create_params[:category_id] == '0' && create_params[:category_name].present?
+    if create_params[:category_id] == "0" && create_params[:category_name].present?
       category_id = Category.create_or_find_by!(name: create_params[:category_name]).id
     else
       category_id = create_params[:category_id]

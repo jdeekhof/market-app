@@ -6,7 +6,7 @@ class CartItem < ApplicationRecord
   belongs_to :promotion, required: false
 
   scope :undiscounted, -> { where(promotion_id: nil) }
-  scope :ordered_by_category, ->{ joins(:product).order(product: {category_id: :ASC}) }
+  scope :ordered_by_category, -> { joins(:product).order(product: { category_id: :ASC }) }
 
   def human_units_of_sale
     return "#{quantity}" if product.units_of_sale == "discrete"
