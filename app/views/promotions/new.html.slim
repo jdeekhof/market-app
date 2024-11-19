@@ -22,10 +22,6 @@ div.container.flex
             = f.datetime_field :ends_at
 
           .flex.flex-col.form-group
-            = f.label :units_of_discount, class: "text-sm font-medium text-gray-700"
-            = f.select :units_of_discount, Promotion.units_of_discounts, {allow_blank: false},class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-
-          .flex.flex-col.form-group
             = f.label :minimum_quantity, class: "text-sm font-medium text-gray-700"
             = f.number_field :minimum_quantity, placeholder: 1, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500", min: 1, step: 1
 

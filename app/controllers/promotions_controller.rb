@@ -24,7 +24,6 @@ class PromotionsController < ApplicationController
       begins_at: create_params[:begins_at],
       ends_at: create_params[:ends_at],
       minimum_quantity: create_params[:minimum_quantity],
-      units_of_discount: Promotion.units_of_discounts.keys[create_params[:units_of_discount].to_i],
       discount_type:,
       cents_discount_scalar: scalar,
     )
@@ -40,7 +39,6 @@ class PromotionsController < ApplicationController
       :begins_at,
       :ends_at,
       :minimum_quantity,
-      :units_of_discount,
       :discount_type,
       :discount_scalar,
       :discount_scalar_cents,
