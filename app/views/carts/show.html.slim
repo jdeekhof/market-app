@@ -14,6 +14,7 @@ title Cart
               thead
                 tr.bg-slate-400
                   th.border Item
+                  th.border Brand
                   th.border Quantity
                   th.border Unit Price
                   th.border Subtotal
@@ -24,6 +25,7 @@ title Cart
                   turbo-frame id="cart_item_#{item.id}"
                     tr
                       td.border = item.product.name
+                      td.border = item.product.brand
                       td.border = item.human_units_of_sale
                       td.border = number_to_currency(item.product.cents_price_per_unit/100.0)
                       td.border = number_to_currency(item.quantity * item.product.cents_price_per_unit/100.0)
